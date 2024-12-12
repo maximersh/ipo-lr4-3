@@ -1,14 +1,19 @@
-n = int(input("vvedi:"))
-a = [i for i in range(n+1)]
-print (*a)
-a[1] = 0
-i = 2
-while 1 < n ** 0.5: 
-    if a[i] != 0:
-        j = i ** 2
-while j <= n:
-    a[j] = 0
-    j = j + i
-    i = i + 1
-    a = [i for i in a if a[i] !=0]
-    print (*a)
+vvod_ot_polzovatelya = int(input("Введите число: "))  # Пользователь вводит число, которое нужно проверить
+# Если число меньше 2, оно не является простым
+if vvod_ot_polzovatelya < 2:
+    print(f"{vvod_ot_polzovatelya} - не является простым числом")  # Если число меньше 2, оно не может быть простым
+else:
+    # Создание списка булевых значений, обозначающих простоту чисел
+    spisok = [True] * (vvod_ot_polzovatelya + 1)  # Инициализируем список длиной vvod_ot_polzovatelya + 1 со значением True
+    p = 2  # Начальное значение для переменной p - первое простое число
+    # Алгоритм решета Эратосфена
+    while p * p <= vvod_ot_polzovatelya:  # Цикл продолжается, пока квадрат p меньше или равен uvvod_ot_polzovatelya
+        if spisok[p] == True:  # Если текущее число p ещё не помечено как составное
+            for i in range(p * p, vvod_ot_polzovatelya + 1, p):  # Помечаем все кратные p как составные
+                spisok[i] = False  # Устанавливаем False для всех кратных p
+        p += 1  # Переходим к следующему числу
+    # Проверка, является ли введенное число простым
+    if spisok[vvod_ot_polzovatelya]:  # Если значение в списке для vvod_ot_polzovatelya True, значит число простое
+        print(f"{vvod_ot_polzovatelya} - простое число")  # Вывод сообщения, что число простое
+    else:
+        print(f"{vvod_ot_polzovatelya} - не является простым числом")  # Вывод сообщения, что число не простое
